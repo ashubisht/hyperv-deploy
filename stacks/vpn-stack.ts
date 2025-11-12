@@ -31,7 +31,6 @@ const connectToOpenVPNProfile = (config: OpenVPNConfig) => {
 };
 
 const disconnectFromOpenVPNProfile = (config: OpenVPNConfig) => {
-  console.log(`Execute command: \n sudo pkill -f "openvpn.*${config.configPath}" \n OR \n sudo pkill "openvpn"`);
   return `echo "Execute command: \n sudo pkill -f "openvpn.*${config.configPath}" \n OR \n sudo pkill "openvpn""`;
 };
 

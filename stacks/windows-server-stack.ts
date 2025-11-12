@@ -109,7 +109,7 @@ const createWindowsServerVm = (config: WindowsServerConfig): string[] => {
   if (safeIso && safeIso.trim() !== "") {
     psScriptParts.push(
       `$isoPath = '${safeIso}' -replace '/', '\\'`,
-      `if (Test-Path $isoPath) { Add-VMDvdDrive -VMName '${safeVmName}' -Path $isoPath; Write-Host 'VM ${vmName} created with Ubuntu ISO attached' } else { Write-Host 'Warning: ISO file $isoPath not found. VM created without ISO.'; Write-Host 'You can attach an ISO later using: Set-VMDvdDrive -VMName ${vmName} -Path <ISO_PATH>' }`
+      `if (Test-Path $isoPath) { Add-VMDvdDrive -VMName '${safeVmName}' -Path $isoPath; Write-Host 'VM ${vmName} created with ISO attached' } else { Write-Host 'Warning: ISO file $isoPath not found. VM created without ISO.'; Write-Host 'You can attach an ISO later using: Set-VMDvdDrive -VMName ${vmName} -Path <ISO_PATH>' }`
     );
   }
 
@@ -154,7 +154,7 @@ export class WindowsServerStack extends TerraformStack {
     new NullProvider(this, "null");
 
 
-    // Create Windows Server VM with Ubuntu ISO using remote-exec
+    // Create Windows Server VM with a specific ISO using remote-exec
     new Resource(this, "CreateWindowsServerVm", {
       provisioners: [
         new InitRemoteExecProvisioner({

@@ -14,7 +14,7 @@ new OpenVPNStack(app, "vpn-stack", {
   credentialsPath: process.env.OPENVPN_CREDENTIALS_PATH || "./credentials.txt"
 });
 
-new IsoStack(app, "ubuntu-iso-stack", {
+new IsoStack(app, "iso-stack", {
   winrmConfig: {
     host: <string>process.env.WINRM_HOST,
     port: process.env.WINRM_PORT ? parseInt(process.env.WINRM_PORT) : 5985,
@@ -26,7 +26,7 @@ new IsoStack(app, "ubuntu-iso-stack", {
     timeout: process.env.WINRM_TIMEOUT || "5m"
   },
   isoPath: <string>process.env.ISO_PATH,
-  isoUrl: process.env.ISO_URL || "https://releases.ubuntu.com/22.04.4/ubuntu-22.04.4-live-server-amd64.iso"
+  isoUrl: <string>process.env.ISO_URL
 });
 
 new WindowsServerStack(app, "windows-vm-stack", {
